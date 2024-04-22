@@ -37,6 +37,15 @@ function playRound(playerChoice, computerChoice) {
   }
 }
 
+function getWinner(playerScore, computerScore) {
+  if (playerScore > computerScore) {
+    console.log(`Player wins with ${playerWin} points!`)
+  }
+  else if (computerScore > playerScore) {
+    console.log(`Computer wins with ${computerWin} points!`)
+  } else { console.log(`Player and Computer tied!`)}
+}
+
 let playerWin = 0;
 let computerWin = 0;
 let draws = 0;
@@ -77,12 +86,7 @@ function playGame() {
   console.log(`Computer wins: ${computerWin}`);
   console.log(`Draws: ${draws}`);
 
-  if (playerWin > computerWin) {
-    console.log(`Player wins with ${playerWin} points!`)
-  }
-  else if (computerWin > playerWin) {
-    console.log(`Computer wins with ${computerWin} points!`)
-  } else { console.log(`Player and Computer tied!`)}
+  getWinner(playerWin, computerWin)
 
   
 }
