@@ -12,82 +12,122 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-function playRound(playerChoice, computerChoice) {
-  if (
-    playerChoice === playerChoice.toUpperCase() ||
-    playerChoice.toLowerCase()
-  ) {
-    playerChoice = playerChoice.toLowerCase();
-  }
+let playerChoice = document.querySelectorAll(".rps-btn");
+let playerSelection = document.querySelector(".player-selection");
+let playerWin = document.querySelector(".player-score");
+let playerSelectionValue;
+let gameNotice = document.querySelector(".game-notice");
+let playAgainContainer = document.querySelector(".play-again");
+let playerLoss = document.querySelector(".player-losses");
+let playerMoves = document.querySelector(".moves");
 
+const playGame = () => {
+  playerChoice.forEach((button) => {
+    button.addEventListener("click", () => {
+      playerMovesLeft--;
+      playerMoves.textContent = playerMovesLeft;
+      let computerChoice = getComputerChoice();
+      console.log(computerChoice);
+      playerSelectionValue = button.id;
+      gameNotice.textContent = "";
+      playRound(playerSelectionValue, computerChoice);
+      if (playerMovesLeft === 0) {
+        getWinner(playerWins, computerWin);
+      }
+    });
+  });
+};
+
+playGame();
+
+function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
-    return draws++, "It's a draw!";
+    return draws++, (gameNotice.textContent = "It's a draw!");
   } else if (playerChoice === "rock" && computerChoice === "paper") {
-    return computerWin++, "Computer wins! Paper beats rock.";
+    return (
+      computerWin++,
+      playerLosses++,
+      ((gameNotice.textContent = "Computer scores!"),
+      (playerLoss.textContent = playerLosses))
+    );
   } else if (playerChoice === "paper" && computerChoice === "rock") {
-    return playerWin++, "Player wins! Paper beats rock.";
+    return (
+      playerWins++,
+      (gameNotice.textContent = "Player scores!"),
+      (playerWin.textContent = playerWins)
+    );
   } else if (playerChoice === "scissors" && computerChoice === "paper") {
-    return playerWin++, "Player wins. Scissors beat paper";
+    return (
+      playerWins++,
+      (gameNotice.textContent = "Player scores!"),
+      (playerWin.textContent = playerWins)
+    );
   } else if (playerChoice === "paper" && computerChoice === "scissors") {
-    return computerWin++, "Computer wins! Scissors beat paper.";
+    return (
+      computerWin++,
+      playerLosses++,
+      ((gameNotice.textContent = "Computer scores!"),
+      (playerLoss.textContent = playerLosses))
+    );
   } else if (playerChoice === "rock" && computerChoice === "scissors") {
-    return playerWin++, "Player wins! Rock beats scissors. ";
+    return (
+      playerWins++,
+      (gameNotice.textContent = "Player scores!"),
+      (playerWin.textContent = playerWins)
+    );
   } else if (playerChoice === "scissors" && computerChoice === "rock") {
-    return computerWin++, "Computer wins! Rock beats scissors. ";
+    return (
+      computerWin++,
+      playerLosses++,
+      ((gameNotice.textContent = "Computer scores!"),
+      (playerLoss.textContent = playerLosses))
+    );
   }
 }
 
 function getWinner(playerScore, computerScore) {
-  if (playerScore > computerScore) {
-    console.log(`Player wins with ${playerWin} points!`);
+  if (playerScore === computerScore) {
+    rock.disabled = true;
+    paper.disabled = true;
+    scissors.disabled = true;
+    gameNotice.textContent = "It's a draw!";
+    playAgain();
   } else if (computerScore > playerScore) {
-    console.log(`Computer wins with ${computerWin} points!`);
-  } else {
-    console.log(`Player and Computer tied!`);
+    rock.disabled = true;
+    paper.disabled = true;
+    scissors.disabled = true;
+    gameNotice.textContent = "Computer wins game!";
+    playAgain();
+  } else if (playerScore > computerScore) {
+    rock.disabled = true;
+    paper.disabled = true;
+    scissors.disabled = true;
+    gameNotice.textContent = "Player wins game!";
+    playAgain();
   }
 }
 
-let playerWin = 0;
+const playAgain = () => {
+  let playAgainBtn = document.createElement("button");
+  playAgainBtn.textContent = "Play again?";
+  playAgainBtn.setAttribute("class", "rps-btn");
+  playAgainContainer.appendChild(playAgainBtn);
+  playAgainBtn.onclick = function () {
+    playerWins = 0;
+    computerWin = 0;
+    playerLosses = 0;
+    playerWin.textContent = 0;
+    playerLoss.textContent = 0;
+    playerMovesLeft = 5;
+    rock.disabled = false;
+    paper.disabled = false;
+    scissors.disabled = false;
+    playAgainBtn.remove();
+  };
+};
+
 let computerWin = 0;
+let playerWins = 0;
+let playerLosses = 0;
+let playerMovesLeft = 5;
 let draws = 0;
-
-function playGame() {
-  let playerSelection = prompt("Rock, paper or scissors?");
-  let computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(`Player wins: ${playerWin}`);
-  console.log(`Computer wins: ${computerWin}`);
-  console.log(`Draws: ${draws}`);
-
-  playerSelection = prompt("Rock, paper or scissors?");
-  computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(`Player wins: ${playerWin}`);
-  console.log(`Computer wins: ${computerWin}`);
-  console.log(`Draws: ${draws}`);
-
-  playerSelection = prompt("Rock, paper or scissors?");
-  computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(`Player wins: ${playerWin}`);
-  console.log(`Computer wins: ${computerWin}`);
-  console.log(`Draws: ${draws}`);
-
-  playerSelection = prompt("Rock, paper or scissors?");
-  computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(`Player wins: ${playerWin}`);
-  console.log(`Computer wins: ${computerWin}`);
-  console.log(`Draws: ${draws}`);
-
-  playerSelection = prompt("Rock, paper or scissors?");
-  computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(`Player wins: ${playerWin}`);
-  console.log(`Computer wins: ${computerWin}`);
-  console.log(`Draws: ${draws}`);
-
-  getWinner(playerWin, computerWin);
-}
-
-playGame();

@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Jost", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #dcd2cc;
+  color: #ede7dc;
+}
+
+.background {
+  background-color: #ccafa5;
+  max-width: 80%;
+  min-height: 100vh;
+  margin: auto;
+}
+
+.header-container {
+  padding: 36px 36px 36px 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 22px;
+  font-weight: bolder;
+  max-width: 100%;
+  max-height: auto;
+}
+
+.win-container,
+.loss-container,
+.move-container {
+  display: flex;
+  border: 3px solid #bdc3cb;
+  border-radius: 15px;
+  min-width: 12%;
+  min-height: auto;
+  padding: 26px;
+  /* margin: auto; */
+}
+
+.btn-container {
+  padding: 36px 0 36px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+}
+
+.rps-btn {
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #dcd2cc;
+  border: 3px solid #bdc3cb;
+  border-radius: 15px;
+}
+
+.rps-btn:focus {
+  background-color: #bdc3cb;
+  border: 3px solid #dcd2cc;
+}
+
+.rps-btn:hover {
+  border-color: #ede7dc;
+}
+
+.gameboard {
+  padding: 36px;
+  font-size: 18px;
+  border: 3px solid #bdc3cb;
+  border-radius: 15px;
+  max-width: 30%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bolder;
+  gap: 18px;
+}

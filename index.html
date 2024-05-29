@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RPS</title>
-  <script src="rockpaperscissors.js"></script>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPS</title>
+    <script defer src="rockpaperscissors.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="header-container">
+        <header>
+          <h1>Rock Paper Scissors</h1>
+        </header>
+      </div>
+      <div class="scoreboard">
+        <div class="win-container">
+          <p class="wins">
+            Wins:
+            <span class="player-score">0</span>
+          </p>
+        </div>
+        <div class="loss-container">
+          <p class="losses">
+            Losses:
+            <span class="player-losses">0</span>
+          </p>
+        </div>
+        <div class="move-container">
+          <p class="moves-left">
+            Moves:
+            <span class="moves">5</span>
+          </p>
+        </div>
+      </div>
+      <div class="btn-container">
+        <button id="rock" class="rps-btn">Rock</button>
+        <button id="paper" class="rps-btn">Paper</button>
+        <button id="scissors" class="rps-btn">Scissors</button>
+      </div>
+      <div class="gameboard">
+        <p class="game-notice"></p>
+        <p class="play-again"></p>
+      </div>
+    </div>
+  </body>
 </html>
